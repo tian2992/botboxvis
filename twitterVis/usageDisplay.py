@@ -5,6 +5,7 @@ auth = None # bad habits are hard to kill
 consumer_key = "uxFUGLPgtTcpWC7TahiWiQ"
 consumer_secret = "ubSEKXxXMFtVbvyHfoZ2DIAjfPI8sSJ2TvukaGDvSjE"
 filename = "auth_tokens.txt"
+sinceID = "33510331653292033" #first feburary twitt
 
 if os.path.exists(filename):
   token_file = open(filename, "r", 0)
@@ -33,7 +34,7 @@ else:
 
 api = tweepy.API(auth)
 
-allStatus = api.list_timeline("tian2992", "usac-ecys", per_page=500)
+allStatus = api.list_timeline("tian2992", "usac-ecys",since_id=sinceID, per_page=500)
 
 weekdays_sum = 0.0
 resultsSize = 0 # because allStatus.count() doesn't work
@@ -44,4 +45,4 @@ for status in allStatus:
   #print (status.id_str+" --- "+status.created_at.isoformat())
   #print (status.text)
   
-print ("Average Weekday for Tweets: "+weekdays_sum/resultsSize)
+print ("Average Weekday for Tweets: "+str(weekdays_sum/resultsSize))
